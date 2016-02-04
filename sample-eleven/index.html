@@ -6,7 +6,7 @@
 	<body ng-controller="StoreController as store">
 	
 	<div class="row">
-		<div class="col-md-2 col-md-offset-5">
+		<div class="col-md-5 col-md-offset-2">
 		<section ng-controller="PanelController as panel" >
 
 			<div class="list-group-item" ng-repeat="product in store.products">
@@ -28,7 +28,9 @@
 
 				<div class="panel" ng-show="panel.isSelected(3)" >
 
-					 <form name="commentForm" ng-controller="CommentController as commentCtrl" ng-submit="commentCtrl.addComment(product)" >
+					 <form name="commentForm" 
+					 ng-controller="CommentController as commentCtrl"
+					 ng-submit="commentCtrl.addComment(product)" >
 
 		            <ul>
 		              <h4>Comentários</h4>
@@ -50,8 +52,13 @@
 
 		              <h4>Submeter um Comentário </h4>
 		              <fieldset class="form-group">
-		                <select ng-model="commentCtrl.comment.stars" class="form-control" ng-options="stars for stars in [5,4,3,2,1]"  title="Stars">
+		                <select ng-model="commentCtrl.comment.stars" class="form-control" title="Stars">
 		                  <option value="">Avaliação do Produto</option>
+		                  <option value="1">1</option>
+		                  <option value="2">2</option>
+		                  <option value="3">3</option>
+		                  <option value="4">4</option>
+		                  <option value="5">5</option>
 		                </select>
 		              </fieldset>
 		              <fieldset class="form-group">
