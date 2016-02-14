@@ -33,7 +33,7 @@ describe('products service tests', function () {
 });
 
 
-describe('products service tests33', function () {
+describe('products service tests mock', function () {
 
   beforeEach(angular.mock.module('products'));
 
@@ -59,4 +59,29 @@ describe('products service tests33', function () {
 });
 });
 
+
+describe('products service tests mock 2', function () {
+
+  beforeEach(angular.mock.module('products'));
+
+  it('should append category names to products', function () {
+
+	 angular.mock.module({
+    'CategoryService': { 
+      getCategories: function() { 
+        return { 1: 'Electronics', 2: 'DVDs' }; 
+      } 
+    }
+  });
+
+  var service;
+
+ 	angular.mock.inject(function GetDependencies(CategoryService) {
+      service = CategoryService;
+    });
+
+    var categories = service.getCategories();
+    expect(categories).toEqual({ 1: 'Electronics', 2: 'DVDs' });
+});
+});
 
