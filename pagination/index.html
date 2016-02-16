@@ -1,0 +1,39 @@
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js" />
+</script>
+<script type="text/javascript" src="app.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+
+<div ng-app="sampleapp">
+    <div ng-controller="samplecontoller" ng-init="showData()">
+
+        <ul>
+            <li class="paginationclass" style="font-weight:bold;"> <span>Name</span><span>Age</span><span>Designation</span>           </li>
+ <li class="paginationclass" ng-repeat="datalist in datalists | pagination : currentPage*itemsPerPage | limitTo: itemsPerPage">
+     <span>{{ datalist.name }}</span><span>{{ datalist.age }}</span>
+         <span>{{ datalist.Designation }}</span>
+
+ </li>
+</ul>
+
+    <div class="pagination-div">
+
+        <ul class="pagination">
+              <li ng-class="DisablePrevPage()">
+                <a href ng-click="prevPage()">« Prev</a>
+              </li>
+              <li ng-repeat="n in range()" ng-class="{active: n == currentPage}" ng-click="setPage(n)">
+                <a href="#">{{n+1}}</a>
+              </li>
+              <li ng-class="DisableNextPage()">
+                <a href ng-click="nextPage()">Next »</a>
+
+              </li>
+            </ul>
+
+</div>
+
+
+
+    </div>
+</div>
