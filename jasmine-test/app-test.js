@@ -9,11 +9,11 @@ describe('Unit testing para angular', function() {
     $compile = _$compile_;
     $rootScope = _$rootScope_;
   }));
-    
+
   it('Verifica conteudo dos elementos', function() {
     var element = $compile("<a-great-eye></a-great-eye>")($rootScope);
     $rootScope.$digest();
-   
+
     expect(element.html()).toContain("lidless, wreathed in flame, 2 times");
   });
 });
