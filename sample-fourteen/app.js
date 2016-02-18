@@ -1,11 +1,6 @@
 (function(){
 	var app = angular.module('store',[]);
 
-	app.controller('StoreController', function(){
-		this.products = gems; 
-	});
-
-
 	app.directive('productHeader',function(){
 		return{
 			restrict:'E',
@@ -22,7 +17,7 @@
 
 	app.controller('CommentController', function(){
 		this.comment ={};
-		
+
 		this.addComment = function(product){
 			product.comments.push(this.comment);
 			this.comment ={};
@@ -42,7 +37,71 @@
 		};
 	});
 
-	var gems = [  
+	app.controller('StoreContoller', function ($scope) {
+
+	 $scope.showData = function( ){
+
+	 $scope.itemsPerPage = 1;
+	 $scope.currentPage = 0;
+	 $scope.datalists = gems;
+
+	   $scope.range = function() {
+	    var rangeSize = 2;
+	    var ps = [];
+	    var start;
+
+	    start = $scope.currentPage;
+	    if ( start > $scope.pageCount()-rangeSize ) {
+	      start = $scope.pageCount()-rangeSize+1;
+	    }
+
+	    for (var i=start; i<start+rangeSize; i++) {
+	      ps.push(i);
+	    }
+	    return ps;
+	  };
+
+	  $scope.prevPage = function() {
+	    if ($scope.currentPage > 0) {
+	      $scope.currentPage--;
+	    }
+	  };
+
+	  $scope.DisablePrevPage = function() {
+	    return $scope.currentPage === 0 ? "disabled" : "";
+	  };
+
+	  $scope.pageCount = function() {
+	    return Math.ceil($scope.datalists.length/$scope.itemsPerPage)-1;
+	  };
+
+	  $scope.nextPage = function() {
+	    if ($scope.currentPage < $scope.pageCount()) {
+	      $scope.currentPage++;
+	    }
+	  };
+
+	  $scope.DisableNextPage = function() {
+	    return $scope.currentPage === $scope.pageCount() ? "disabled" : "";
+	  };
+
+	  $scope.setPage = function(n) {
+	    $scope.currentPage = n;
+	  };
+
+	}
+
+	});
+
+app.filter('pagination', function()
+	{
+	  return function(input, start) {
+	    start = parseInt(start, 10);
+	    return input.slice(start);
+	  };
+	});
+
+	var gems = [
 	{
 		name:'meias',
 		price: 1.99,
